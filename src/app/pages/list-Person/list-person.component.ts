@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { PersonService } from '../../services/person.service';
 
 import { Component, inject, OnInit } from '@angular/core';
+import { Person } from '../../model/person';
 
 
 
@@ -19,13 +20,25 @@ import { Component, inject, OnInit } from '@angular/core';
 export class PersonComponent implements OnInit {
   private personService = inject(PersonService);
 
-  people : any[] = [];
+  people : Person[] = [];
   ngOnInit(): void {
-      this.personService.list()
-        .subscribe((people: any) =>{
+     this.loadList();
+  }
+
+  loadList(){
+    this.personService.list()
+        .subscribe(people  =>{
           this.people = people;
         });
-      
+  }
+
+  deletePerson(person: Person){
+    this.personService.delete(person.identification)
+    .subscribe(() =>{
+      this.loadList();
+    });
+
+    
   }
  
 }

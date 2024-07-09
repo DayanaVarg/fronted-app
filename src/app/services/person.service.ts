@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { Person } from '../model/person';
 
 @Injectable({
   providedIn: 'root'
@@ -8,22 +9,22 @@ export class PersonService {
   private http = inject(HttpClient);
 
   list(){
-    return this.http.get('http://localhost:8080/api/people/list');
+    return this.http.get<Person[]>('http://localhost:8080/api/people/list');
   }
 
   get(id: String){
-    return this.http.get(`http://localhost:8080/api/people/list/${id}`);
+    return this.http.get<Person>(`http://localhost:8080/api/people/list/${id}`);
   }
 
   create(person:any){
-    return this.http.post('http://localhost:8080/api/people/add/', person);
+    return this.http.post<Person>('http://localhost:8080/api/people/add', person);
   }
 
-  update(id: String, person:any){
-    return this.http.put(`http://localhost:8080/api/people/${id}`, person);
+  update(id: String, person:Person){
+    return this.http.put<Person>(`http://localhost:8080/api/people/${id}`, person);
   }
 
   delete(id: String){
-    return this.http.delete(`http://localhost:8080/api/people/${id}`);
+    return this.http.delete<void>(`http://localhost:8080/api/people/${id}`);
   }
 }

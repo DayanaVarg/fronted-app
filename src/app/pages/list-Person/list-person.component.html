@@ -1,8 +1,31 @@
-<h1 class="mb-5">Personas</h1>
-<div>
-    <button routerLink="/add">Añadir persona</button>
+<h1 class="mb-5 text-center">Personas</h1>
+<div class="text-end mb-3">
+    <button routerLink="/add" class="btn btn-primary">Añadir persona</button>
 </div>
-<table class="table table-hover" >
+<div class=" mb-3">
+    <label>Filtrar por edad
+    <select  class="">
+        <option>0-10</option>
+        <option>11-20</option>
+        <option>21-30</option>
+        <option>31-40</option>
+        <option>41-50</option>
+        <option>51-60</option>
+        <option>61-70</option>
+        <option>71 - ...</option>
+    </select>
+    </label>
+
+    <label class="ms-5">Ordenar por
+        <select  class="">
+            <option>Identificación</option>
+            <option>Nombre</option>
+        </select>
+        </label>
+</div>
+
+<div class="table-responsive" style="height: 300px; overflow-y: scroll;">
+    <table id="dataTable" class="table table-hover" >
     <thead>
         <tr>
             <th>Identificación</th>
@@ -23,8 +46,13 @@
                 <td>{{person.email}}</td>
                 <td>{{person.phone}}</td>
                 <td>{{person.dateBirth}}</td>
-                <td></td>
+                <td>
+                        <button class="btn btn-primary" [routerLink]="[person.identification,'update']">Editar</button>
+                        <button class="btn btn-danger" (click)="deletePerson(person)">Eliminar</button>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+</div>
+
