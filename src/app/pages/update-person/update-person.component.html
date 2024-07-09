@@ -1,56 +1,71 @@
 <h2>Editar Persona</h2>
 @if(form){
     <form [formGroup]="form" (ngSubmit)="update()"  >
-        <div class="mb-3">
-            <label for="identification">Identificación</label>
-            <input id="identification" type="text" placeholder="Ingrese su identificación" class="form-control"  formControlName="identification" readonly>
+        <div class="form-row row mb-3">
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <label for="identification">Identificación</label>
+                    <input id="identification" type="text" placeholder="Ingrese su identificación" class="form-control"  formControlName="identification" readonly>
+                </div>
+            </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input id="name" type="text" placeholder="Ingrese su nombre" class="form-control"  formControlName="name" required>
+                        @if(form.get('name')?.hasError('required')){
+                            <p class="invalid-feedback d-block">El nombre es obligatorio</p>
+                        }
+                    </div>
+                </div>
+        </div>
+        <div class="form-row row  mb-3">
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <label for="lastname">Apellido</label>
+                    <input id="lastname" type="text"  placeholder="Ingrese su apellido" class="form-control"  formControlName="lastname">
+                    @if(form.get('lastname')?.hasError('required')){
+                        <p class="invalid-feedback d-block">El apellido es obligatorio</p>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <label for="email">Correo</label>
+                    <input id="email" type="email" placeholder="Ingrese su correo" class="form-control"  formControlName="email">
+                    @if(form.get('email')?.hasError('required')){
+                        <p class="invalid-feedback d-block">El email es obligatorio</p>
+                    }
+                    @if(form.get('email')?.hasError('email')){
+                        <p class="invalid-feedback d-block">El email es inválido</p>
+                    }
+                </div>
+            </div>
         </div>
     
-        <div class="mb-3">
-            <label for="name">Nombre</label>
-            <input id="name" type="text" placeholder="Ingrese su nombre" class="form-control"  formControlName="name" required>
-            @if(form.get('name')?.hasError('required')){
-                <p class="invalid-feedback d-block">El nombre es obligatorio</p>
-            }
+        <div class="form-row row  mb-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input id="phone" type="number" placeholder="Ingrese su teléfono" attern=".{10}"  class="form-control"  formControlName="phone">
+                    @if(form.get('phone')?.hasError('required')){
+                        <p class="invalid-feedback d-block">El teléfono es obligatorio</p>
+                    }
+                </div>
+            
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="dateBirth">Fecha de Nacimiento</label>
+                    <input id="dateBirth" type="date"class="form-control"  formControlName="dateBirth">
+                    @if(form.get('dateBirth')?.hasError('required')){
+                        <p class="invalid-feedback d-block">La fecha de nacimiento es obligatoria</p>
+                    }
+                </div>
+            </div>
         </div>
-    
-        <div class="mb-3">
-            <label for="lastname">Apellido</label>
-            <input id="lastname" type="text"  placeholder="Ingrese su apellido" class="form-control"  formControlName="lastname">
-            @if(form.get('lastname')?.hasError('required')){
-                <p class="invalid-feedback d-block">El apellido es obligatorio</p>
-            }
-        </div>
-    
-        <div class="mb-3">
-            <label for="email">Correo</label>
-            <input id="email" type="email" placeholder="Ingrese su correo" class="form-control"  formControlName="email">
-            @if(form.get('email')?.hasError('required')){
-                <p class="invalid-feedback d-block">El email es obligatorio</p>
-            }
-            @if(form.get('email')?.hasError('email')){
-                <p class="invalid-feedback d-block">El email es inválido</p>
-            }
-        </div>
-    
-        <div class="mb-3">
-            <label for="phone">Teléfono</label>
-            <input id="phone" type="number" placeholder="Ingrese su teléfono" attern=".{10}"  class="form-control"  formControlName="phone">
-            @if(form.get('phone')?.hasError('required')){
-                <p class="invalid-feedback d-block">El teléfono es obligatorio</p>
-            }
-        </div>
-    
-        <div class="mb-3">
-            <label for="dateBirth">Fecha de Nacimiento</label>
-            <input id="dateBirth" type="date"class="form-control"  formControlName="dateBirth">
-            @if(form.get('dateBirth')?.hasError('required')){
-                <p class="invalid-feedback d-block">La fecha de nacimiento es obligatoria</p>
-            }
-        </div>
-    
+
         <div class="text-end">
-            <button type="button" class="btn btn-primary ms-2"   routerLink="/">
+            <button type="button" class="btn btn-danger ms-2"   routerLink="/">
                 Cancelar
             </button>
     

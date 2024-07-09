@@ -2,6 +2,7 @@ import { PersonService } from './../../services/person.service';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-update-person',
@@ -43,12 +44,26 @@ export class UpdatePersonComponent implements OnInit {
     const person = this.form!.value;
     if(this.form?.invalid){
       return;
-    }else {{
-      this.personService.update(person.identification, person)
-      .subscribe(() =>{
-      this.router.navigate(['/']);
+    }else {
+      Swal.fire({
+        html: '¿Está seguro que desea actualizar este registro?',
+        icon: 'info',
+        iconColor: '#544A0D',
+        showDenyButton: true,
+        confirmButtonText: "Aceptar",
+        denyButtonText: "Cancelar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.personService.update(person.identification, person)
+          .subscribe(() =>{
+            Swal.fire("Actualizado!", "", "success");
+            this.router.navigate(['/']);
+          });
+        }else{
+          this.router.navigate(['/']);
+        }
       });
-    }}
+    }
   }
   
 }

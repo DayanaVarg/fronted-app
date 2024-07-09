@@ -15,7 +15,7 @@ export class AddPersonComponent {
   private router = inject(Router);
   private personService = inject(PersonService);
 
-  form = this.fb.group({
+  form1 = this.fb.group({
     identification : ['' , [Validators.required, Validators.min(10)]],
     name : ['', [Validators.required]],
     lastname:['', [Validators.required]],
@@ -25,10 +25,10 @@ export class AddPersonComponent {
   });
 
   create(){
-    if(this.form?.invalid){
+    if(this.form1?.invalid){
       return;
-    }else if (this.form.valid) {
-      this.personService.create(this.form.value).subscribe({
+    }else if (this.form1.valid) {
+      this.personService.create(this.form1.value).subscribe({
         next: (response) => {
           console.log('Usuario creado exitosamente', response);
           this.router.navigate(['/']);
