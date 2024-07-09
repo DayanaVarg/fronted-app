@@ -1,0 +1,42 @@
+<h2>Nueva Persona</h2>
+<form [formGroup]="form()" (ngSubmit) = "create()" >
+    <div class="mb-3">
+        <label for="ide">Identificación</label>
+        <input id="ide" type="text" placeholder="Ingrese su identificación" class="form-control"  formControlName="ide">
+    </div>
+
+    <div class="mb-3">
+        <label for="name">Nombre</label>
+        <input id="name" type="text" placeholder="Ingrese su nombre" class="form-control"  formControlName="name">
+    </div>
+
+    <div class="mb-3">
+        <label for="lastname">Apellido</label>
+        <input id="lastname" type="text"  placeholder="Ingrese su apellido" class="form-control"  formControlName="lastname">
+    </div>
+
+    <div class="mb-3">
+        <label for="email">Correo</label>
+        <input id="email" type="email" placeholder="Ingrese su correo" class="form-control"  formControlName="email">
+    </div>
+
+    <div class="mb-3">
+        <label for="phone">Teléfono</label>
+        <input id="phone" type="number" placeholder="Ingrese su teléfono" class="form-control"  formControlName="phone">
+    </div>
+
+    <div class="mb-3">
+        <label for="dateB">Fecha de Nacimiento</label>
+        <input id="dateB" type="date" name="dateB" class="form-control"  formControlName="dateB">
+    </div>
+
+    <div class="text-end">
+        <button type="button" class="btn btn-primary ms-2"   routerLink="/">
+            Cancelar
+        </button>
+
+        <button class="btn btn-primary ms-2"  routerLink="/">
+            Crear Persona
+        </button>
+    </div>
+</form>
