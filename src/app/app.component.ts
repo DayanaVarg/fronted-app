@@ -5,15 +5,10 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports : [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  welcome = 'fronted-app';
-  tasks = [
-    'Carnes',
-    'Huevos',
-    'Pan'
-  ]
+  
 }

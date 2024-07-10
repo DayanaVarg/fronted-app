@@ -1,55 +1,62 @@
 <h1 class="mb-5 text-center">Personas</h1>
 <div class="text-end mb-3">
-    <button routerLink="/add" class="btn btn-primary">Añadir persona</button>
+  <button routerLink="/add" class="btn btn-primary">Añadir persona</button>
 </div>
-<div class=" mb-3">
-    <label>Filtrar por edad
-    <select  class="">
-        <option>2006</option>
-        <option>2006</option>
-        <option>2005</option>
-        <option>2004</option>
-        <option>2000</option>
+<div class="mb-3">
+  <label
+    >Filtrar por año de nacimiento
+    <select (change)="applyFilters()">
+      <option value="">Todos</option>
+      @for (item of yearsFormated; track item) {
+      <option>{{ item }}</option>
+      }
     </select>
-    </label>
+  </label>
 
-    <label class="ms-5">Ordenar alfabéticamente
-        <select  class="">
-            <option value="asc">A - Z</option>
-            <option value="desc">Z - A</option>
-        </select>
-        </label>
+  <label class="ms-5"
+    >Ordenar alfabéticamente
+    <select (change)="applyFilters()" id="sortOrder">
+      <option value="asc">A - Z</option>
+      <option value="desc">Z - A</option>
+    </select>
+  </label>
 </div>
 
-<div class="table-responsive" style="height: 300px; overflow-y: scroll;">
-    <table id="dataTable" class="table table-hover" >
+<div class="table-responsive" style="height: 300px; overflow-y: scroll">
+  <table id="dataTable" class="table table-hover">
     <thead>
-        <tr>
-            <th>Identificación</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Correo</th>
-            <th>Teléfono</th>
-            <th>Fecha de Nacimento</th>
-            <th>Acciones</th>
-        </tr>
+      <tr>
+        <th>Identificación</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Fecha de Nacimento</th>
+        <th>Acciones</th>
+      </tr>
     </thead>
     <tbody>
-        @for(person of people; track person.identification) {
-            <tr>
-                <td>{{person.identification}}</td>
-                <td>{{person.name}}</td>
-                <td>{{person.lastname}}</td>
-                <td>{{person.email}}</td>
-                <td>{{person.phone}}</td>
-                <td>{{person.dateBirth}}</td>
-                <td>
-                        <button class="btn btn-primary" [routerLink]="[person.identification,'update']">Editar</button>
-                        <button class=" ms-2 btn btn-danger" (click)="deletePerson(person)">Eliminar</button>
-                </td>
-            </tr>
-        }
+      @for(person of filteredPeople; track person.identification) {
+      <tr>
+        <td>{{ person.identification }}</td>
+        <td>{{ person.name }}</td>
+        <td>{{ person.lastname }}</td>
+        <td>{{ person.email }}</td>
+        <td>{{ person.phone }}</td>
+        <td>{{ person.dateBirth }}</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            [routerLink]="[person.identification, 'update']"
+          >
+            Editar
+          </button>
+          <button class="ms-2 btn btn-danger" (click)="deletePerson(person)">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+      }
     </tbody>
-</table>
+  </table>
 </div>
-
