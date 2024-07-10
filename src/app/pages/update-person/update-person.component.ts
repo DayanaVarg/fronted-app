@@ -44,9 +44,9 @@ export class UpdatePersonComponent implements OnInit {
     const person = this.form!.value;
     if(this.form?.invalid){
       return;
-    }else {
+    }else {{
       Swal.fire({
-        html: '¿Está seguro que desea actualizar este registro?',
+        html: '¿Está seguro que desea actualizar el registro?',
         icon: 'info',
         iconColor: '#544A0D',
         showDenyButton: true,
@@ -56,14 +56,16 @@ export class UpdatePersonComponent implements OnInit {
         if (result.isConfirmed) {
           this.personService.update(person.identification, person)
           .subscribe(() =>{
-            Swal.fire("Actualizado!", "", "success");
-            this.router.navigate(['/']);
+          Swal.fire("Actualizado!", "", "success");
+          this.router.navigate(['/']);
           });
-        }else{
+        }else if (result.isDenied) {
+          
           this.router.navigate(['/']);
         }
       });
     }
-  }
   
+  }
+}
 }

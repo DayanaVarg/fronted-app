@@ -1,17 +1,20 @@
 <div>
 <h2>Nueva Persona</h2>
-<form [formGroup]="form1" (ngSubmit)="create()">
+<form [formGroup]="form" (ngSubmit)="create()">
     <div class="form-row row  mb-3">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="ide">Identificación</label>
-                <input id="ide" type="text" placeholder="Ingrese su identificación" pattern=".{10}" class="form-control"
+                <input id="ide" type="text" placeholder="Ingrese su identificación" pattern=".{9,10}" class="form-control"
                     formControlName="identification">
-                @if(form1.get('identification')?.hasError('required')){
+                @if(form.get('identification')?.hasError('required')){
                     <p class="invalid-feedback d-block">La identificación es obligatoria</p>
                 }
-                @if(form1.get('identification')?.hasError('min')){
+                @if(form.get('identification')?.hasError('minlength')){
                     <p class="invalid-feedback d-block">Debe contener al menos 9 caracteres</p>
+                }
+                @if(form.get('identification')?.hasError('maxlength')){
+                    <p class="invalid-feedback d-block">Debe contener máximo 10 caracteres</p>
                 }
             </div>
         </div>
@@ -20,7 +23,7 @@
             <div class="form-group">
                 <label for="name">Nombre</label>
                 <input id="name" type="text" placeholder="Ingrese su nombre" class="form-control" formControlName="name">
-                @if(form1.get('name')?.hasError('required')){
+                @if(form.get('name')?.hasError('required')){
                     <p class="invalid-feedback d-block">El nombre es obligatorio</p>
                 }
             </div>
@@ -33,7 +36,7 @@
                 <label for="lastname">Apellido</label>
                 <input id="lastname" type="text" placeholder="Ingrese su apellido" class="form-control"
                     formControlName="lastname">
-                    @if(form1.get('lastname')?.hasError('required')){
+                    @if(form.get('lastname')?.hasError('required')){
                         <p class="invalid-feedback d-block">El apellido es obligatorio</p>
                     }
             </div>
@@ -43,10 +46,10 @@
             <div class="form-group">
                 <label for="email">Correo</label>
                 <input id="email" type="email" placeholder="Ingrese su correo" class="form-control" formControlName="email">
-                @if(form1.get('email')?.hasError('required')){
+                @if(form.get('email')?.hasError('required')){
                     <p class="invalid-feedback d-block">El email es obligatorio</p>
                 }
-                @if(form1.get('email')?.hasError('email')){
+                @if(form.get('email')?.hasError('email')){
                     <p class="invalid-feedback d-block">El email es inválido</p>
                 }
             </div>
@@ -58,7 +61,7 @@
             <div class="mb-3">
                 <label for="phone">Teléfono</label>
                 <input id="phone" type="number" placeholder="Ingrese su teléfono" class="form-control" formControlName="phone">
-                @if(form1.get('phone')?.hasError('required')){
+                @if(form.get('phone')?.hasError('required')){
                     <p class="invalid-feedback d-block">El teléfono es obligatorio</p>
                 }
                 
@@ -69,7 +72,7 @@
             <div class="form-group">
                 <label for="dateB">Fecha de Nacimiento</label>
                 <input id="dateB" type="date" name="dateB" class="form-control" formControlName="dateBirth">
-                @if(form1.get('dateBirth')?.hasError('required')){
+                @if(form.get('dateBirth')?.hasError('required')){
                     <p class="invalid-feedback d-block">La fecha de nacimiento es obligatoria</p>
                 }
             </div>

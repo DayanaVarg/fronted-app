@@ -5,21 +5,18 @@
 <div class=" mb-3">
     <label>Filtrar por edad
     <select  class="">
-        <option>0-10</option>
-        <option>11-20</option>
-        <option>21-30</option>
-        <option>31-40</option>
-        <option>41-50</option>
-        <option>51-60</option>
-        <option>61-70</option>
-        <option>71 - ...</option>
+        <option>2006</option>
+        <option>2006</option>
+        <option>2005</option>
+        <option>2004</option>
+        <option>2000</option>
     </select>
     </label>
 
-    <label class="ms-5">Ordenar por
-        <select  class="">
-            <option>Identificación</option>
-            <option>Nombre</option>
+    <label class="ms-5">Ordenar alfabéticamente
+        <select (change)="applyFilters()" id="sortOrder" class="">
+            <option value="asc">A - Z</option>
+            <option value="desc">Z - A</option>
         </select>
         </label>
 </div>
